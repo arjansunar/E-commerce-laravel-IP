@@ -15,7 +15,7 @@
 
     </head>
     <body>
-        <div x-data="{ cartOpen: false , isOpen: false }">
+        <div x-data="{ cartOpen: false , isOpen: false, cart: [], resetCart(){this.cart = getCookie('cart') ? Object.values(JSON.parse(getCookie('cart'))):[]}}">
             @include('_layouts._navbar')
             
             @include('_layouts._cart')
@@ -26,5 +26,43 @@
 
             @include('_layouts._footer')
         </div>
+        <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function setCookie(cname, cvalue, exmins) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exmins*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function setCart(pid, quantity){
+            let cartInCookie = JSON.parse(getCookie('cart'));
+            cartInCookie[pid].quantity =quantity;
+            console.log(cartInCookie)
+            setCookie("cart", JSON.stringify(cartInCookie),10)
+        }
+
+        function removeFromCart(pid){
+            let cartInCookie = JSON.parse(getCookie('cart'));
+            delete cartInCookie[pid]
+            setCookie("cart", JSON.stringify(cartInCookie),10)
+        }
+        // let cartData= Alpine.reactive({cart: []})
+    </script>
     </body>
 </html>
