@@ -8,7 +8,7 @@
                 <span class="mx-1 text-sm">NY</span>
             </div>
             <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
-                Brand
+                The Formal Store
             </div>
             <div class="flex items-center justify-end w-full">
                 <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">

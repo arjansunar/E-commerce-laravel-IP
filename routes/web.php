@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Product;
+use App\Models\Product as ModelProduct;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +20,17 @@ Route::get('/', function () {
 });
 
 Route::get('/shop',[Product::class,'index']);
+
+Route::get('/checkout',function(){
+    return view('checkout');
+});
+
+Route::get('/products',function(){
+    $product = ModelProduct::all();
+    dd($product);
+    return "all products";
+});
+
+Route::get('/product', function(){
+    return view('product');
+});
