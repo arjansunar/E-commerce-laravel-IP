@@ -20,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/shop',[Product::class,'index']);
+Route::get('/shop/{category_id}',[Product::class,'withCategory']);
+Route::get('/shop/sub/{category_id}/{sub_category_id}',[Product::class,'subCategory']);
+
 
 Route::get('/checkout',function(){
     return view('checkout');
@@ -34,3 +37,5 @@ Route::get('/products',function(){
 Route::get('/product', function(){
     return view('product');
 });
+
+// Route::get('/subcategory/{category_id}',);

@@ -14,13 +14,13 @@
         <script defer src="https://unpkg.com/alpinejs@3.2.2/dist/cdn.min.js"></script>
 
     </head>
-    <body>
-        <div x-data="{ cartOpen: false , isOpen: false, cart: [], resetCart(){this.cart = getCookie('cart') ? Object.values(JSON.parse(getCookie('cart'))):[]}}">
+    <body  class="min-h-screen max-h-full ">
+        <div class="relative" x-data="{ cartOpen: false , isOpen: false, cart: [], resetCart(){this.cart = getCookie('cart') ? Object.values(JSON.parse(getCookie('cart'))):[]}}">
             @include('_layouts._navbar')
             
             @include('_layouts._cart')
     
-            <main class="my-8">
+            <main class="my-8 pb-14">
                 @yield('body')
             </main>
 
