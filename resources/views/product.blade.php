@@ -25,7 +25,7 @@
             <hr class="my-3">
             <div class="">
                 <label class="text-gray-700 text-sm" for="description">Description:</label>
-                <p class="text-gray-500 mt-1">{{$main["description"]}}</p>
+                <div class="text-gray-500 mt-1">{!! $main["description"] !!}</div>
             </div>
             <div class="flex items-center mt-6">
                 <button x-on:click="fetch('/api/add-to-cart',{method:'POST',headers: {'Content-Type': 'application/json'}, body: JSON.stringify({'product_id':{{$main["id"]}},'quantity': count})}).then(()=> location.reload())" class="flex space-x-2 px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500 ">

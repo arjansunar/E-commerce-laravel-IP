@@ -32,3 +32,8 @@ Route::get('/checkout',function(){
 
 // singular product
 Route::get('/product/{product_id}',[Product::class,'productDescription']);
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

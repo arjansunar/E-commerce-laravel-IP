@@ -27,7 +27,7 @@ class CartController extends Controller
 
             if (!empty($prev_cookie[$product_id])){
                 if (!empty($this->cart[$product_id])){
-                    $this->cart[$product_id]->quantity = $prev_cookie[$product_id]->quantity+1;
+                    $this->cart[$product_id]->quantity = $prev_cookie[$product_id]->quantity+$quantity;
                 } 
             }else {
                 $this->cart[$product_id]=["quantity"=> $quantity,"id"=> $product->id,"name"=> $product->name, "price"=> $product->price , "image"=> $product->image_url];
