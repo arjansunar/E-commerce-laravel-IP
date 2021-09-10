@@ -22,7 +22,13 @@
                             </div>
                             <div class="px-5 py-3">
                                 <h3 class="text-gray-700 uppercase">{{$product['name']}}</h3>
-                                <span class="text-gray-500 mt-2">${{$product['price']}}</span>
+                                <div class="flex justify-between mt-2">
+                                    <span class="text-gray-500">${{$product['price']}}</span>
+                                    <a href="/product/{{$product['id']}}" class="flex items-center text-gray-500 text-sm uppercase font-medium rounded hover:underline focus:outline-none">
+                                        <span>View More</span>
+                                        <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     @empty

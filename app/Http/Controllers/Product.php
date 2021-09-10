@@ -53,4 +53,47 @@ class Product extends Controller
             "has_category"=> false
         ]);
     }
+
+    public function search($product_name){
+
+        $products = ModelProduct::query()
+            ->where('name', 'LIKE', "%{$product_name}%")
+            ->get();
+
+        return view('search',[
+            "products"=> $products,
+        ]);
+    }
+
+
+    public function homeProducts(){
+
+        $random_products=ModelProduct::all()->random(3); 
+        $hero_product= $random_products[0];
+        $sub_products= [$random_products[1], $random_products[2]];
+       
+        $categories= Category::all(); 
+        $products=[];
+
+        foreach ($categories as $category) {
+            $id= $category["id"];
+            $products_with_category_id= ModelProduct::where("category_id", $id)->limit(5)->get();
+            $products[$id]=["data"=>$products_with_category_id, "category"=> $category["name"]];
+        }
+        return view('index',[
+            "hero"=> $hero_product,
+            "sub_hero"=> $sub_products,
+            "products"=> $products
+        ]);
+    }
+
+    public function productDescription($product_id){
+        // dd($product_id);
+        $product= ModelProduct::where("id",$product_id)->get();
+        $products= ModelProduct::all()->random(4);
+        return view("product",[
+            "main"=> $product[0],
+            "products"=>$products
+        ]);
+    }
 }

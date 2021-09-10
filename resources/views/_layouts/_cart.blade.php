@@ -1,4 +1,4 @@
-<div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
+<div :class="cartOpen ? 'translate-x-0 opacity-100' : 'translate-x-full'" class="opacity-0 ease-in-out fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
     <div class="flex items-center justify-between">
         <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
         <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">

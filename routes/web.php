@@ -15,27 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [Product::class,'homeProducts']);
 
+// shop route
 Route::get('/shop',[Product::class,'index']);
 Route::get('/shop/{category_id}',[Product::class,'withCategory']);
 Route::get('/shop/sub/{category_id}/{sub_category_id}',[Product::class,'subCategory']);
 
+// search route
+Route::get('/search/{product_name}',[Product::class,'search']);
 
+// search route
 Route::get('/checkout',function(){
     return view('checkout');
 });
 
-Route::get('/products',function(){
-    $product = ModelProduct::all();
-    dd($product);
-    return "all products";
-});
-
-Route::get('/product', function(){
-    return view('product');
-});
-
-// Route::get('/subcategory/{category_id}',);
+// singular product
+Route::get('/product/{product_id}',[Product::class,'productDescription']);
