@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Product;
 use App\Models\Product as ModelProduct;
@@ -25,14 +26,14 @@ Route::get('/shop/sub/{category_id}/{sub_category_id}',[Product::class,'subCateg
 // search route
 Route::get('/search/{product_name}',[Product::class,'search']);
 
-// search route
-Route::get('/checkout',function(){
-    return view('checkout');
-});
+// checkout route
+Route::get('/checkout',[Product::class,'checkout']);
 
 // singular product
 Route::get('/product/{product_id}',[Product::class,'productDescription']);
 
+//generating bill
+Route::get('/bill', [BillController::class, 'generatePDF']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

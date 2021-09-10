@@ -88,12 +88,19 @@ class Product extends Controller
     }
 
     public function productDescription($product_id){
-        // dd($product_id);
         $product= ModelProduct::where("id",$product_id)->get();
         $products= ModelProduct::all()->random(4);
         return view("product",[
             "main"=> $product[0],
             "products"=>$products
+        ]);
+    }
+
+    public function checkout(Request $req){
+        $prev_cookie= (array)json_decode($req->cookie("cart"));
+        // dd($prev_cookie);
+        return view("checkout",[
+            "products"=> $prev_cookie
         ]);
     }
 }

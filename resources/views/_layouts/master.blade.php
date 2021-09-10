@@ -15,12 +15,12 @@
 
     </head>
     <body  class="min-h-screen max-h-full ">
-        <div class="relative" x-data="{ cartOpen: false , isOpen: false, cart: [], resetCart(){this.cart = getCookie('cart') ? Object.values(JSON.parse(getCookie('cart'))):[]}}">
+        <div class="flex flex-col" x-data="{ cartOpen: false , isOpen: false, cart: [], resetCart(){this.cart = getCookie('cart') ? Object.values(JSON.parse(getCookie('cart'))):[]}}">
             @include('_layouts._navbar')
             
             @include('_layouts._cart')
     
-            <main class="my-8 pb-14">
+            <main class="flex-grow my-8 pb-14">
                 @yield('body')
             </main>
 
@@ -53,14 +53,13 @@
         function setCart(pid, quantity){
             let cartInCookie = JSON.parse(getCookie('cart'));
             cartInCookie[pid].quantity =quantity;
-            console.log(cartInCookie)
-            setCookie("cart", JSON.stringify(cartInCookie),10)
+            setCookie("cart", JSON.stringify(cartInCookie),60)
         }
 
         function removeFromCart(pid){
             let cartInCookie = JSON.parse(getCookie('cart'));
             delete cartInCookie[pid]
-            setCookie("cart", JSON.stringify(cartInCookie),10)
+            setCookie("cart", JSON.stringify(cartInCookie),60)
         }
         // let cartData= Alpine.reactive({cart: []})
     </script>

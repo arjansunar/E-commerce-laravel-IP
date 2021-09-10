@@ -37,7 +37,7 @@ class CartController extends Controller
                 $this->cart[$product["id"]]=["quantity"=> $quantity,"id"=> $product->id, "name"=> $product->name,"price"=> $product->price , "image"=> $product->image_url];
             }
         }
-        $minutes=10;
+        $minutes=60;
         return response()->json(["cart"=> $this->cart])->withCookie("cart",json_encode($this->cart),$minutes,null, null, false, false);
     }
 
