@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use PDF;
 
 class BillController extends Controller
@@ -37,13 +39,19 @@ class BillController extends Controller
         $total=0;
         foreach ($prev_cookie as $key => $value) {
             $total += ($value->price * $value->quantity);
+            Product::find($key)->decrement('stock', $value->quantity);
         }
+
+        // clearing cookies
+        $minutes=60;
+        // Cookie::make('cart', json_encode([]), $minutes);
+        
         $data= [
             "products"=> $prev_cookie,
             "info"=> ["name"=> $name,"phone"=> $phone, "address"=> $address, "date" => $date ],
             "total"=> $total
         ];
         $pdf = PDF::loadView('bill', $data);
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('invoice.pdf')->withCookie('cart', json_encode([]), $minutes);
     }
 }
